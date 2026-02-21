@@ -20,7 +20,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for professional UI - Updated color scheme
+# Custom CSS for clean, modern UI - No white boxes
 st.markdown("""
 <style>
     /* Import Google Fonts */
@@ -29,12 +29,12 @@ st.markdown("""
     /* Global Styles */
     .stApp {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
     
-    /* Main container styling */
+    /* Main container styling - Transparent */
     .main-header {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         padding: 2rem;
         border-radius: 20px;
         color: white;
@@ -55,75 +55,33 @@ st.markdown("""
         font-weight: 400;
     }
     
-    /* Card styling */
-    .feature-card {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 15px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        height: 100%;
-        border: 1px solid rgba(255,255,255,0.1);
-        backdrop-filter: blur(10px);
-    }
-    
-    .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-    
-    /* Button styling - Updated to match new color scheme */
-    .stButton > button {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        font-weight: 600;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-size: 0.9rem;
-        width: 100%;
-        box-shadow: 0 4px 15px rgba(30, 60, 114, 0.4);
-    }
-    
-    .stButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(30, 60, 114, 0.5);
-    }
-    
-    /* Secondary button style */
-    .stButton > button[data-baseweb="button-secondary"] {
-        background: white;
-        color: #1e3c72;
-        border: 2px solid #1e3c72;
-    }
-    
-    /* File uploader styling */
+    /* Clean upload area - No white box */
     .uploadfile {
-        border: 2px dashed #1e3c72;
+        border: 2px dashed rgba(255,255,255,0.3);
         border-radius: 15px;
         padding: 2rem;
         text-align: center;
-        background: rgba(255,255,255,0.9);
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
         transition: all 0.3s ease;
+        color: white;
     }
     
     .uploadfile:hover {
-        border-color: #2a5298;
-        background: rgba(255,255,255,0.95);
+        border-color: rgba(255,255,255,0.8);
+        background: rgba(255,255,255,0.15);
     }
     
     /* Success message styling */
     .success-box {
-        background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
         padding: 1rem;
         border-radius: 10px;
-        color: white;
+        color: #155724;
         font-weight: 500;
         margin: 1rem 0;
         animation: slideIn 0.5s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     
     @keyframes slideIn {
@@ -137,13 +95,14 @@ st.markdown("""
         }
     }
     
-    /* Tab styling - Updated colors */
+    /* Clean tab styling */
     .stTabs [data-baseweb="tab-list"] {
         gap: 2rem;
         background: rgba(255,255,255,0.1);
         padding: 0.5rem;
         border-radius: 50px;
         backdrop-filter: blur(10px);
+        margin-bottom: 2rem;
     }
     
     .stTabs [data-baseweb="tab"] {
@@ -152,64 +111,99 @@ st.markdown("""
         font-weight: 600;
         color: white;
         transition: all 0.3s ease;
+        background: transparent;
     }
     
     .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white !important;
-        box-shadow: 0 4px 15px rgba(30, 60, 114, 0.4);
+        background: white !important;
+        color: #667eea !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    /* Clean button styling */
+    .stButton > button {
+        background: white;
+        color: #667eea;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.9rem;
+        width: 100%;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        background: #f8f9fa;
+    }
+    
+    /* Secondary button */
+    .stButton > button[data-baseweb="button-secondary"] {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+    }
+    
+    .stButton > button[data-baseweb="button-secondary"]:hover {
+        background: rgba(255,255,255,0.1);
     }
     
     /* Progress bar styling */
     .stProgress > div > div {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    }
-    
-    /* Sidebar styling */
-    .css-1d391kg {
-        background: rgba(255,255,255,0.95);
-        backdrop-filter: blur(10px);
-    }
-    
-    /* Metric cards - Updated colors */
-    .metric-card {
         background: white;
+    }
+    
+    /* Metric cards - Clean and minimal */
+    .metric-card {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
         padding: 1.5rem;
         border-radius: 15px;
         text-align: center;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        border-bottom: 4px solid #1e3c72;
+        border: 1px solid rgba(255,255,255,0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .metric-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255,255,255,0.15);
     }
     
     .metric-value {
         font-size: 2rem;
         font-weight: 700;
-        color: #1e3c72;
+        color: white;
         margin: 0.5rem 0;
     }
     
     .metric-label {
         font-size: 0.9rem;
-        color: #666;
+        color: rgba(255,255,255,0.8);
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
     
-    /* History item styling - Updated color */
+    /* History items - Clean and minimal */
     .history-item {
-        background: white;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
         padding: 1rem;
         border-radius: 10px;
         margin: 0.5rem 0;
-        border-left: 4px solid #1e3c72;
+        border: 1px solid rgba(255,255,255,0.2);
         animation: slideIn 0.3s ease;
         transition: all 0.3s ease;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        color: white;
     }
     
     .history-item:hover {
         transform: translateX(5px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        background: rgba(255,255,255,0.15);
     }
     
     /* Badge styling */
@@ -221,73 +215,101 @@ st.markdown("""
         font-weight: 600;
         text-transform: uppercase;
         margin-right: 0.5rem;
-    }
-    
-    .badge-success {
-        background: #43a047;
+        background: rgba(255,255,255,0.2);
         color: white;
     }
     
-    .badge-info {
-        background: #1e3c72;
+    /* File info text */
+    .file-info {
+        color: rgba(255,255,255,0.9);
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 8px;
+        backdrop-filter: blur(5px);
+    }
+    
+    /* Section headers */
+    .section-header {
         color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 1rem 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid rgba(255,255,255,0.2);
     }
     
-    /* Tooltip */
-    .tooltip {
-        position: relative;
-        display: inline-block;
+    /* Sidebar styling - Clean */
+    .css-1d391kg {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
     }
     
-    .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 120px;
-        background-color: #555;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%;
-        left: 50%;
-        margin-left: -60px;
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
-    
-    .tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
-    }
-    
-    /* Quick action buttons in sidebar */
+    /* Quick action buttons */
     .quick-action {
-        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        background: rgba(255,255,255,0.1);
         padding: 0.75rem;
         border-radius: 10px;
         margin: 0.5rem 0;
         text-align: center;
         cursor: pointer;
         transition: all 0.3s ease;
-        border: 1px solid #1e3c72;
-        color: #1e3c72;
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
         font-weight: 500;
     }
     
     .quick-action:hover {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white;
+        background: rgba(255,255,255,0.2);
         transform: translateX(5px);
     }
     
     /* Stats card in sidebar */
     .stats-card {
-        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
         padding: 1rem;
         border-radius: 10px;
         margin: 1rem 0;
-        border-left: 4px solid #1e3c72;
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+    }
+    
+    /* Select boxes */
+    .stSelectbox > div > div {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        border-radius: 10px;
+    }
+    
+    .stSelectbox > div > div:hover {
+        background: rgba(255,255,255,0.15);
+    }
+    
+    /* Slider */
+    .stSlider > div > div {
+        color: white;
+    }
+    
+    /* Checkbox */
+    .stCheckbox > div > label {
+        color: white;
+    }
+    
+    /* File uploader text */
+    .stFileUploader > div > div {
+        color: white;
+    }
+    
+    /* Info boxes */
+    .stAlert {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        border-radius: 10px;
     }
     
     /* Responsive design */
@@ -326,17 +348,11 @@ with col1:
 
 with col2:
     # Stats overview
-    st.markdown("""
-    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 15px; backdrop-filter: blur(10px);">
-    """, unsafe_allow_html=True)
-    
     col_a, col_b = st.columns(2)
     with col_a:
-        st.metric("Total Conversions", st.session_state.total_conversions, "+1 today")
+        st.metric("Total Conversions", st.session_state.total_conversions, "+1 today", label_visibility="collapsed")
     with col_b:
-        st.metric("Success Rate", "100%", "0%")
-    
-    st.markdown("</div>", unsafe_allow_html=True)
+        st.metric("Success Rate", "100%", "0%", label_visibility="collapsed")
 
 # Conversion functions (keeping your original functions)
 def convert_pdf_to_images(pdf_bytes, output_format):
@@ -408,7 +424,7 @@ def convert_image_format(image_file, output_format):
         st.error(f"Error converting image: {str(e)}")
         return None
 
-# Main conversion tabs with enhanced UI
+# Main conversion tabs
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "📄 PDF to Images", 
     "🖼️ Images to PDF", 
@@ -418,37 +434,31 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 ])
 
 with tab1:
-    st.markdown("### 📄 PDF to Image Conversion")
+    st.markdown('<div class="section-header">📄 PDF to Image Conversion</div>', unsafe_allow_html=True)
     st.markdown("Convert your PDF documents to high-quality images")
     
     col1, col2 = st.columns([3, 1])
     
     with col1:
-        with st.container():
-            st.markdown('<div class="feature-card">', unsafe_allow_html=True)
-            pdf_file = st.file_uploader(
-                "Drop your PDF file here",
-                type=['pdf'],
-                key="pdf_to_img",
-                help="Supported: PDF files up to 200MB"
-            )
-            
-            if pdf_file:
-                st.info(f"📁 Selected: {pdf_file.name} ({(pdf_file.size/1024/1024):.2f} MB)")
-            st.markdown('</div>', unsafe_allow_html=True)
+        pdf_file = st.file_uploader(
+            "Drop your PDF file here",
+            type=['pdf'],
+            key="pdf_to_img",
+            help="Supported: PDF files up to 200MB"
+        )
+        
+        if pdf_file:
+            st.markdown(f'<div class="file-info">📁 Selected: {pdf_file.name} ({(pdf_file.size/1024/1024):.2f} MB)</div>', unsafe_allow_html=True)
     
     with col2:
-        with st.container():
-            st.markdown('<div class="feature-card">', unsafe_allow_html=True)
-            output_format = st.selectbox(
-                "Output Format",
-                ['PNG', 'JPEG', 'WEBP', 'BMP'],
-                key="pdf_output_format",
-                help="Choose the output image format"
-            )
-            
-            quality = st.slider("Quality", 1, 100, 85, help="Output quality (higher = better)")
-            st.markdown('</div>', unsafe_allow_html=True)
+        output_format = st.selectbox(
+            "Output Format",
+            ['PNG', 'JPEG', 'WEBP', 'BMP'],
+            key="pdf_output_format",
+            help="Choose the output image format"
+        )
+        
+        quality = st.slider("Quality", 1, 100, 85, help="Output quality (higher = better)")
     
     if pdf_file and output_format:
         if st.button("🚀 Start Conversion", key="convert_pdf_btn", use_container_width=True):
@@ -513,7 +523,7 @@ with tab1:
                     status_text.empty()
 
 with tab2:
-    st.markdown("### 🖼️ Create PDF from Images")
+    st.markdown('<div class="section-header">🖼️ Create PDF from Images</div>', unsafe_allow_html=True)
     st.markdown("Combine multiple images into a single PDF document")
     
     image_files = st.file_uploader(
@@ -525,7 +535,7 @@ with tab2:
     )
     
     if image_files:
-        st.markdown(f"**Selected {len(image_files)} images**")
+        st.markdown(f'<div class="file-info">📁 Selected {len(image_files)} images</div>', unsafe_allow_html=True)
         
         # Preview grid
         cols = st.columns(min(4, len(image_files)))
@@ -566,108 +576,103 @@ with tab2:
                         })
 
 with tab3:
-    st.markdown("### 🎨 Image Format Converter")
+    st.markdown('<div class="section-header">🎨 Image Format Converter</div>', unsafe_allow_html=True)
     st.markdown("Convert images between different formats with ease")
     
     col1, col2 = st.columns(2)
     
     with col1:
-        with st.container():
-            st.markdown('<div class="feature-card">', unsafe_allow_html=True)
-            image_file = st.file_uploader(
-                "Select image",
-                type=['png', 'jpg', 'jpeg', 'webp', 'bmp', 'gif'],
-                key="img_convert",
-                help="Supported: PNG, JPG, JPEG, WEBP, BMP, GIF"
-            )
-            
-            if image_file:
-                st.image(image_file, caption="Original", use_container_width=True)
-            st.markdown('</div>', unsafe_allow_html=True)
+        image_file = st.file_uploader(
+            "Select image",
+            type=['png', 'jpg', 'jpeg', 'webp', 'bmp', 'gif'],
+            key="img_convert",
+            help="Supported: PNG, JPG, JPEG, WEBP, BMP, GIF"
+        )
+        
+        if image_file:
+            st.image(image_file, caption="Original", use_container_width=True)
     
     with col2:
-        with st.container():
-            st.markdown('<div class="feature-card">', unsafe_allow_html=True)
-            to_format = st.selectbox(
-                "Convert to",
-                ['PNG', 'JPEG', 'WEBP', 'BMP', 'GIF'],
-                key="to_format"
-            )
-            
-            if image_file:
-                if st.button("🎯 Convert Now", key="convert_btn", use_container_width=True):
-                    with st.spinner("Converting..."):
-                        result = convert_image_format(image_file, to_format)
+        to_format = st.selectbox(
+            "Convert to",
+            ['PNG', 'JPEG', 'WEBP', 'BMP', 'GIF'],
+            key="to_format"
+        )
+        
+        if image_file:
+            if st.button("🎯 Convert Now", key="convert_btn", use_container_width=True):
+                with st.spinner("Converting..."):
+                    result = convert_image_format(image_file, to_format)
+                    
+                    if result:
+                        filename, img_bytes = result
+                        st.success("✅ Conversion complete!")
                         
-                        if result:
-                            filename, img_bytes = result
-                            st.success("✅ Conversion complete!")
-                            
-                            st.image(img_bytes, caption="Converted", use_container_width=True)
-                            
-                            st.download_button(
-                                label=f"📥 Download as {to_format}",
-                                data=img_bytes,
-                                file_name=filename,
-                                mime=f"image/{to_format.lower()}",
-                                use_container_width=True
-                            )
-                            
-                            # Update stats
-                            st.session_state.total_conversions += 1
-                            
-                            st.session_state.conversion_history.append({
-                                'type': 'Image Format',
-                                'input': f"{Path(image_file.name).suffix} image",
-                                'output': f"{to_format} image",
-                                'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                            })
-            st.markdown('</div>', unsafe_allow_html=True)
+                        st.image(img_bytes, caption="Converted", use_container_width=True)
+                        
+                        st.download_button(
+                            label=f"📥 Download as {to_format}",
+                            data=img_bytes,
+                            file_name=filename,
+                            mime=f"image/{to_format.lower()}",
+                            use_container_width=True
+                        )
+                        
+                        # Update stats
+                        st.session_state.total_conversions += 1
+                        
+                        st.session_state.conversion_history.append({
+                            'type': 'Image Format',
+                            'input': f"{Path(image_file.name).suffix} image",
+                            'output': f"{to_format} image",
+                            'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                        })
 
 with tab4:
-    st.markdown("### 📊 Analytics Dashboard")
+    st.markdown('<div class="section-header">📊 Analytics Dashboard</div>', unsafe_allow_html=True)
     
     # Stats cards
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         <div class="metric-card">
             <div style="font-size: 2rem;">🔄</div>
-            <div class="metric-value">{}</div>
+            <div class="metric-value">{st.session_state.total_conversions}</div>
             <div class="metric-label">Total Conversions</div>
         </div>
-        """.format(st.session_state.total_conversions), unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown("""
+        st.markdown(f"""
         <div class="metric-card">
             <div style="font-size: 2rem;">📊</div>
-            <div class="metric-value">{}</div>
+            <div class="metric-value">{st.session_state.favorite_formats['PDF']}</div>
             <div class="metric-label">PDF Conversions</div>
         </div>
-        """.format(st.session_state.favorite_formats['PDF']), unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
     
     with col3:
-        st.markdown("""
+        st.markdown(f"""
         <div class="metric-card">
             <div style="font-size: 2rem;">🖼️</div>
-            <div class="metric-value">{}</div>
+            <div class="metric-value">{st.session_state.favorite_formats['Images']}</div>
             <div class="metric-label">Image Conversions</div>
         </div>
-        """.format(st.session_state.favorite_formats['Images']), unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
     
     with col4:
-        st.markdown("""
+        today_count = len([h for h in st.session_state.conversion_history if h.get('timestamp', '').startswith(datetime.now().strftime("%Y-%m-%d"))])
+        st.markdown(f"""
         <div class="metric-card">
             <div style="font-size: 2rem;">📅</div>
-            <div class="metric-value">{}</div>
+            <div class="metric-value">{today_count}</div>
             <div class="metric-label">Today</div>
         </div>
-        """.format(len([h for h in st.session_state.conversion_history if h.get('timestamp', '').startswith(datetime.now().strftime("%Y-%m-%d"))])), unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
     
     # Conversion history
-    st.markdown("### 📋 Recent Activity")
+    st.markdown('<div class="section-header">📋 Recent Activity</div>', unsafe_allow_html=True)
     
     if st.session_state.conversion_history:
         for conversion in reversed(st.session_state.conversion_history[-10:]):
@@ -675,10 +680,10 @@ with tab4:
             <div class="history-item">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
-                        <span class="badge badge-success">{conversion['type']}</span>
+                        <span class="badge">{conversion['type']}</span>
                         <strong>{conversion['input']}</strong> → <strong>{conversion['output']}</strong>
                     </div>
-                    <div style="color: #666; font-size: 0.85rem;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.85rem;">
                         {conversion.get('timestamp', 'Just now')}
                     </div>
                 </div>
@@ -692,26 +697,21 @@ with tab4:
         st.info("No conversion history yet. Start converting files!")
 
 with tab5:
-    st.markdown("### ⚙️ Settings")
+    st.markdown('<div class="section-header">⚙️ Settings</div>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown('<div class="feature-card">', unsafe_allow_html=True)
         st.markdown("#### 🎨 Appearance")
         theme = st.selectbox("Theme", ["Light", "Dark", "System"])
         animations = st.toggle("Enable Animations", value=True)
         compact_mode = st.toggle("Compact Mode", value=False)
-        st.markdown('</div>', unsafe_allow_html=True)
     
     with col2:
-        st.markdown('<div class="feature-card">', unsafe_allow_html=True)
         st.markdown("#### ⚡ Performance")
         max_file_size = st.number_input("Max File Size (MB)", min_value=10, max_value=500, value=200)
         parallel_conversions = st.slider("Parallel Conversions", 1, 5, 2)
-        st.markdown('</div>', unsafe_allow_html=True)
     
-    st.markdown('<div class="feature-card">', unsafe_allow_html=True)
     st.markdown("#### 💾 Storage")
     col_s1, col_s2 = st.columns(2)
     with col_s1:
@@ -720,9 +720,8 @@ with tab5:
     with col_s2:
         st.checkbox("Compress output files", value=False)
         st.checkbox("Show file previews", value=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
-# Sidebar with quick actions - Removed support section
+# Sidebar with quick actions
 with st.sidebar:
     st.markdown("## 🚀 Quick Actions")
     
@@ -765,9 +764,9 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Version info only - removed support section
+    # Version info
     st.markdown("""
-    <div style="text-align: center; color: #666; font-size: 0.85rem;">
+    <div style="text-align: center; color: rgba(255,255,255,0.6); font-size: 0.85rem;">
         <strong>Version:</strong> 2.0.0 Pro<br>
         <strong>©</strong> 2026 FileConverter Pro<br>
         <strong>Made with</strong> ❤️ for conversions
