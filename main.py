@@ -20,7 +20,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for clean, modern UI - No white boxes
+# Custom CSS for clean, modern UI - Blue/Gray color scheme
 st.markdown("""
 <style>
     /* Import Google Fonts */
@@ -29,12 +29,12 @@ st.markdown("""
     /* Global Styles */
     .stApp {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     }
     
     /* Main container styling - Transparent */
     .main-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         padding: 2rem;
         border-radius: 20px;
         color: white;
@@ -74,10 +74,10 @@ st.markdown("""
     
     /* Success message styling */
     .success-box {
-        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
         padding: 1rem;
         border-radius: 10px;
-        color: #155724;
+        color: white;
         font-weight: 500;
         margin: 1rem 0;
         animation: slideIn 0.5s ease;
@@ -116,14 +116,14 @@ st.markdown("""
     
     .stTabs [aria-selected="true"] {
         background: white !important;
-        color: #667eea !important;
+        color: #1e3c72 !important;
         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
     
     /* Clean button styling */
     .stButton > button {
         background: white;
-        color: #667eea;
+        color: #1e3c72;
         border: none;
         padding: 0.75rem 1.5rem;
         font-weight: 600;
@@ -305,6 +305,15 @@ st.markdown("""
     
     /* Info boxes */
     .stAlert {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        border-radius: 10px;
+    }
+    
+    /* Number input */
+    .stNumberInput > div > div {
         background: rgba(255,255,255,0.1);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255,255,255,0.2);
@@ -702,8 +711,7 @@ with tab5:
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("#### 🎨 Appearance")
-        theme = st.selectbox("Theme", ["Light", "Dark", "System"])
+        st.markdown("#### 🎨 Display")
         animations = st.toggle("Enable Animations", value=True)
         compact_mode = st.toggle("Compact Mode", value=False)
     
