@@ -20,7 +20,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for professional UI
+# Custom CSS for professional UI - Updated color scheme
 st.markdown("""
 <style>
     /* Import Google Fonts */
@@ -29,12 +29,12 @@ st.markdown("""
     /* Global Styles */
     .stApp {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     }
     
     /* Main container styling */
     .main-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         padding: 2rem;
         border-radius: 20px;
         color: white;
@@ -72,9 +72,9 @@ st.markdown("""
         box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
     
-    /* Button styling */
+    /* Button styling - Updated to match new color scheme */
     .stButton > button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         color: white;
         border: none;
         padding: 0.75rem 1.5rem;
@@ -85,17 +85,24 @@ st.markdown("""
         letter-spacing: 0.5px;
         font-size: 0.9rem;
         width: 100%;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 4px 15px rgba(30, 60, 114, 0.4);
     }
     
     .stButton > button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        box-shadow: 0 8px 25px rgba(30, 60, 114, 0.5);
+    }
+    
+    /* Secondary button style */
+    .stButton > button[data-baseweb="button-secondary"] {
+        background: white;
+        color: #1e3c72;
+        border: 2px solid #1e3c72;
     }
     
     /* File uploader styling */
     .uploadfile {
-        border: 2px dashed #667eea;
+        border: 2px dashed #1e3c72;
         border-radius: 15px;
         padding: 2rem;
         text-align: center;
@@ -104,16 +111,16 @@ st.markdown("""
     }
     
     .uploadfile:hover {
-        border-color: #764ba2;
+        border-color: #2a5298;
         background: rgba(255,255,255,0.95);
     }
     
     /* Success message styling */
     .success-box {
-        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
         padding: 1rem;
         border-radius: 10px;
-        color: #155724;
+        color: white;
         font-weight: 500;
         margin: 1rem 0;
         animation: slideIn 0.5s ease;
@@ -130,7 +137,7 @@ st.markdown("""
         }
     }
     
-    /* Tab styling */
+    /* Tab styling - Updated colors */
     .stTabs [data-baseweb="tab-list"] {
         gap: 2rem;
         background: rgba(255,255,255,0.1);
@@ -148,14 +155,14 @@ st.markdown("""
     }
     
     .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         color: white !important;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 4px 15px rgba(30, 60, 114, 0.4);
     }
     
     /* Progress bar styling */
     .stProgress > div > div {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     }
     
     /* Sidebar styling */
@@ -164,19 +171,20 @@ st.markdown("""
         backdrop-filter: blur(10px);
     }
     
-    /* Metric cards */
+    /* Metric cards - Updated colors */
     .metric-card {
         background: white;
         padding: 1.5rem;
         border-radius: 15px;
         text-align: center;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-bottom: 4px solid #1e3c72;
     }
     
     .metric-value {
         font-size: 2rem;
         font-weight: 700;
-        color: #667eea;
+        color: #1e3c72;
         margin: 0.5rem 0;
     }
     
@@ -187,15 +195,16 @@ st.markdown("""
         letter-spacing: 0.5px;
     }
     
-    /* History item styling */
+    /* History item styling - Updated color */
     .history-item {
         background: white;
         padding: 1rem;
         border-radius: 10px;
         margin: 0.5rem 0;
-        border-left: 4px solid #667eea;
+        border-left: 4px solid #1e3c72;
         animation: slideIn 0.3s ease;
         transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     
     .history-item:hover {
@@ -215,13 +224,13 @@ st.markdown("""
     }
     
     .badge-success {
-        background: #84fab0;
-        color: #155724;
+        background: #43a047;
+        color: white;
     }
     
     .badge-info {
-        background: #8fd3f4;
-        color: #0c5460;
+        background: #1e3c72;
+        color: white;
     }
     
     /* Tooltip */
@@ -252,6 +261,35 @@ st.markdown("""
         opacity: 1;
     }
     
+    /* Quick action buttons in sidebar */
+    .quick-action {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        padding: 0.75rem;
+        border-radius: 10px;
+        margin: 0.5rem 0;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid #1e3c72;
+        color: #1e3c72;
+        font-weight: 500;
+    }
+    
+    .quick-action:hover {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+        transform: translateX(5px);
+    }
+    
+    /* Stats card in sidebar */
+    .stats-card {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        padding: 1rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        border-left: 4px solid #1e3c72;
+    }
+    
     /* Responsive design */
     @media (max-width: 768px) {
         .main-title {
@@ -271,6 +309,10 @@ if 'total_conversions' not in st.session_state:
     st.session_state.total_conversions = 0
 if 'favorite_formats' not in st.session_state:
     st.session_state.favorite_formats = {'PDF': 0, 'Images': 0}
+if 'active_tab' not in st.session_state:
+    st.session_state.active_tab = 0
+if 'show_recent' not in st.session_state:
+    st.session_state.show_recent = False
 
 # Header section
 col1, col2 = st.columns([2, 1])
@@ -292,7 +334,7 @@ with col2:
     with col_a:
         st.metric("Total Conversions", st.session_state.total_conversions, "+1 today")
     with col_b:
-        st.metric("Active Users", "1,234", "+12")
+        st.metric("Success Rate", "100%", "0%")
     
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -680,48 +722,54 @@ with tab5:
         st.checkbox("Show file previews", value=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Sidebar with quick actions
+# Sidebar with quick actions - Removed support section
 with st.sidebar:
     st.markdown("## 🚀 Quick Actions")
     
     if st.button("📊 View Dashboard", use_container_width=True):
         st.session_state.active_tab = 3
+        st.rerun()
     
     if st.button("📋 Recent Files", use_container_width=True):
         st.session_state.show_recent = True
+        if st.session_state.conversion_history:
+            st.sidebar.markdown("### Latest Files")
+            for item in st.session_state.conversion_history[-3:]:
+                st.sidebar.markdown(f"- {item['input']}")
     
     st.markdown("---")
     
     st.markdown("## 📈 Today's Stats")
+    today_count = len([h for h in st.session_state.conversion_history if h.get('timestamp', '').startswith(datetime.now().strftime("%Y-%m-%d"))])
     st.markdown(f"""
-    - Conversions: {len([h for h in st.session_state.conversion_history if h.get('timestamp', '').startswith(datetime.now().strftime("%Y-%m-%d"))])}
-    - Files processed: {st.session_state.total_conversions}
-    - Success rate: 100%
-    """)
+    <div class="stats-card">
+        <strong>Conversions:</strong> {today_count}<br>
+        <strong>Files processed:</strong> {st.session_state.total_conversions}<br>
+        <strong>Success rate:</strong> 100%<br>
+        <strong>Active since:</strong> Today
+    </div>
+    """, unsafe_allow_html=True)
     
     st.markdown("---")
     
     st.markdown("## 💡 Pro Tips")
-    with st.expander("View Tips"):
+    with st.expander("View Tips", expanded=False):
         st.markdown("""
-        - Use PNG for images with transparency
-        - JPEG is best for photographs
-        - Convert multiple PDFs to images in one go
-        - Images to PDF preserves original order
-        - WEBP offers better compression
+        - ✨ Use PNG for images with transparency
+        - 📸 JPEG is best for photographs
+        - 📚 Convert multiple PDFs to images in one go
+        - 🔄 Images to PDF preserves original order
+        - 🚀 WEBP offers better compression
+        - 💾 Batch download saves time
         """)
     
     st.markdown("---")
     
-    st.markdown("## 📞 Support")
+    # Version info only - removed support section
     st.markdown("""
-    Need help? Contact us:
-    - 📧 support@fileconverter.pro
-    - 💬 Live Chat
-    - 📚 Documentation
-    """)
-    
-    # Version info
-    st.markdown("---")
-    st.markdown("**Version:** 2.0.0 Pro")
-    st.markdown("© 2026 FileConverter Pro")
+    <div style="text-align: center; color: #666; font-size: 0.85rem;">
+        <strong>Version:</strong> 2.0.0 Pro<br>
+        <strong>©</strong> 2026 FileConverter Pro<br>
+        <strong>Made with</strong> ❤️ for conversions
+    </div>
+    """, unsafe_allow_html=True)
