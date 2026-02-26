@@ -142,15 +142,34 @@ st.markdown("""
         background: #f8f9fa;
     }
     
-    /* Secondary button */
-    .stButton > button[data-baseweb="button-secondary"] {
-        background: transparent;
-        color: white;
-        border: 2px solid white;
+    /* Mobile-friendly download link button */
+    .mobile-download-btn {
+        display: block;
+        background: white;
+        color: #1e3c72 !important;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        border-radius: 10px;
+        text-align: center;
+        text-decoration: none !important;
+        font-size: 0.9rem;
+        width: 100%;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin: 0.25rem 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
     }
     
-    .stButton > button[data-baseweb="button-secondary"]:hover {
-        background: rgba(255,255,255,0.1);
+    .mobile-download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        background: #f8f9fa;
+        color: #1e3c72 !important;
+        text-decoration: none !important;
     }
     
     /* Progress bar styling */
@@ -345,6 +364,26 @@ if 'active_tab' not in st.session_state:
 if 'show_recent' not in st.session_state:
     st.session_state.show_recent = False
 
+
+# ── Mobile-compatible download helper ──────────────────────────────────────────
+def mobile_download_link(data: bytes, filename: str, label: str, mime: str) -> str:
+    """
+    Returns an HTML anchor tag that works as a download on both desktop and
+    mobile browsers (iOS Safari, Android Chrome, etc.).
+
+    Streamlit's st.download_button relies on a Blob URL created in JavaScript
+    which is blocked by iOS Safari's download policy.  A plain <a href="data:…"
+    download="…"> tag is handled natively by every modern mobile browser.
+    """
+    b64 = base64.b64encode(data).decode()
+    href = f'data:{mime};base64,{b64}'
+    return (
+        f'<a href="{href}" download="{filename}" '
+        f'class="mobile-download-btn">'
+        f'{label}</a>'
+    )
+
+
 # Header section
 col1, col2 = st.columns([2, 1])
 with col1:
@@ -363,7 +402,7 @@ with col2:
     with col_b:
         st.metric("Success Rate", "100%", "0%", label_visibility="collapsed")
 
-# Conversion functions (keeping your original functions)
+# Conversion functions
 def convert_pdf_to_images(pdf_bytes, output_format):
     """Convert PDF to images"""
     try:
@@ -499,19 +538,32 @@ with tab1:
                     
                     with col_d1:
                         if len(result_images) > 1:
+                            # Build zip in memory
                             zip_buffer = io.BytesIO()
                             with zipfile.ZipFile(zip_buffer, 'w') as zf:
                                 for filename, img_bytes in result_images:
                                     zf.writestr(filename, img_bytes)
-                            
                             zip_buffer.seek(0)
-                            
-                            st.download_button(
-                                label="📦 Download All (ZIP)",
-                                data=zip_buffer,
-                                file_name="converted_images.zip",
-                                mime="application/zip",
-                                use_container_width=True
+                            zip_data = zip_buffer.getvalue()
+
+                            # Mobile-compatible download link
+                            st.markdown(
+                                mobile_download_link(
+                                    zip_data,
+                                    "converted_images.zip",
+                                    "📦 Download All (ZIP)",
+                                    "application/zip"
+                                ),
+                                unsafe_allow_html=True
+                            )
+                        else:
+                            # Single image download
+                            fname, img_data = result_images[0]
+                            ext = fname.rsplit('.', 1)[-1].lower()
+                            mime = f"image/{ext}"
+                            st.markdown(
+                                mobile_download_link(img_data, fname, f"📥 Download Image", mime),
+                                unsafe_allow_html=True
                             )
                     
                     with col_d2:
@@ -564,13 +616,16 @@ with tab2:
                     if pdf_data:
                         st.balloons()
                         st.success(f"✅ PDF created successfully!")
-                        
-                        st.download_button(
-                            label="📥 Download PDF",
-                            data=pdf_data,
-                            file_name="converted_images.pdf",
-                            mime="application/pdf",
-                            use_container_width=True
+
+                        # Mobile-compatible download link
+                        st.markdown(
+                            mobile_download_link(
+                                pdf_data,
+                                "converted_images.pdf",
+                                "📥 Download PDF",
+                                "application/pdf"
+                            ),
+                            unsafe_allow_html=True
                         )
                         
                         # Update stats
@@ -618,13 +673,18 @@ with tab3:
                         st.success("✅ Conversion complete!")
                         
                         st.image(img_bytes, caption="Converted", use_container_width=True)
-                        
-                        st.download_button(
-                            label=f"📥 Download as {to_format}",
-                            data=img_bytes,
-                            file_name=filename,
-                            mime=f"image/{to_format.lower()}",
-                            use_container_width=True
+
+                        # Mobile-compatible download link
+                        ext = filename.rsplit('.', 1)[-1].lower()
+                        mime = f"image/{ext}"
+                        st.markdown(
+                            mobile_download_link(
+                                img_bytes,
+                                filename,
+                                f"📥 Download as {to_format}",
+                                mime
+                            ),
+                            unsafe_allow_html=True
                         )
                         
                         # Update stats
